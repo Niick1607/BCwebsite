@@ -1,30 +1,25 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js';
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth';
-import { getFirestore, getDocs, collection } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+import { getDatabase, get, set, ref, child } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
-const firebaseApp = initializeApp({
-    apiKey: "AIzaSyAb_YrNbvv9Gx9Hz-QhKHnP5H9SMPpns_o",
-    authDomain: "bc-test-89764.firebaseapp.com",
-    projectId: "bc-test-89764",
-    storageBucket: "bc-test-89764.appspot.com",
-    messagingSenderId: "1087566198950",
-    appId: "1:1087566198950:web:4e17041d4413c0e4aa9c67",
-    measurementId: "G-GKX5FQE616"
-});
-const auth = getAuth(firebaseApp);
-const db = getFirestore(firebaseApp);
-db.collection('todos').getDocs();
-const todosCol = collection(db, 'todos');
-const snapshot = await getDocs(todosCol);
+const firebaseConfig = {
+  apiKey: "AIzaSyAb_YrNbvv9Gx9Hz-QhKHnP5H9SMPpns_o",
+  authDomain: "bc-test-89764.firebaseapp.com",
+  databaseURL: "https://bc-test-89764-default-rtdb.firebaseio.com",
+  projectId: "bc-test-89764",
+  storageBucket: "bc-test-89764.appspot.com",
+  messagingSenderId: "1087566198950",
+  appId: "1:1087566198950:web:a785f29fc9ee9071aa9c67",
+  measurementId: "G-8LM58C0NYE"
+};
 
-auth.onAuthStateChanged(user => {
+const app = initializeApp(firebaseConfig);
 
-});
-onAuthStateChanged(auth, user => {
-    if (user != null) {
-        console.log('logged in!');
-    } else {
-        console.log('No user!');
-    }
-});
+function writeUserData(userId, name, email, imageUrl) {
+    const db = getDatabase();
 
+    set(ref(db, 'users/' + userId), {
+        username: name,
+        email: email,
+        profile_picture: imageUrl
+    });
+}
