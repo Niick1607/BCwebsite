@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Hind Siliguri", sans-serif;
+}
+
+:root {
+    --background: rgb(33, 33, 33);
+    --branco: #e3e7e9;
+    --azul: rgb(32, 74, 225);
+}
+
+body{
+    background-color: var(--background);
+}
+
+/* ----------------HEADER------------------ */
+
+header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    height: 9vh;
+    padding: 0 .8vw;
+
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.header-opt{
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+
+.header-opt a{
+    color: var(--branco);
+    font-size: 22px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform .4s ease, text-decoration .5s ease;
+}
+
+.header-opt a:hover{
+    transform: scale(1.17);
+    text-decoration: underline;
+}
+
+.header-icons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+.header-img{
+    text-align: center;
+}
+
+.header-img img{
+    width: 5.3vw;
+    filter: drop-shadow(0 0 8px black);
+}
+
+.user-icon{
+    width: 4vw;
+}
+
+/* --------DOWNLOAD SECTION-------- */
+
+main{
+    margin: 2vw 0;
+}
+
+.center-items{
+    display: flex;
+    justify-content: center;
+}
+
+.center-items h1{
+    text-transform: uppercase;
+    font-size: 42px;
+    color: var(--branco);
+}
