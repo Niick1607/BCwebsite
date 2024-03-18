@@ -13,13 +13,45 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getDatabase();
 
-function writeUserData(userId, name, email, imageUrl) {
-    const db = getDatabase();
+function writeCompanyData(companyId, companyName, imageUrl) {
+    set(ref(db, 'company/' + companyId), {
+         companyName: companyName,
+         company_picture: imageUrl
+     });
+ }
 
-    set(ref(db, 'users/' + userId), {
+function writeGameData(gameId, gameName, companyId, imageUrl) {
+    set(ref(db, 'games/' + gameId), {
+        gameName: gameName,
+        companyId: companyId,
+        imageUrl: imageUrl
+    });
+}
+
+function writeNormalUserData(userId, name, email, password, birthYear, imageUrl) {
+set(ref(db, 'users/normal' + userId), {
         username: name,
         email: email,
+        password: password,
+        birthYear: birthYear,
         profile_picture: imageUrl
     });
 }
+
+function writeEnterpriseUserData(userId, name, email, password, companyName, companyCode, companyUserLevel, birthYear, imageUrl) {
+    set(ref(db, 'users/employee' + userId), {
+         username: name,
+         email: email,
+         password: password,
+         companyName: companyName,
+         companyCode: companyCode,
+         companyUserLevel: companyUserLevel,
+         birthYear: birthYear,
+         profile_picture: imageUrl
+     });
+ }
+ 
+
+
